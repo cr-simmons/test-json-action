@@ -9,4 +9,17 @@ jobs:
       - uses: actions/checkout@v1
       - name: Validate JSON Files
         run: |
-          for j in *.json; do python -mjson.tool "$j" > /dev/null || echo "INVALID $j" >&2; done;
+          EXIT_CODE=0
+          for j in *.json 
+          do 
+            echo "$j: Checking Formatting"
+            python -mjson.tool "$j" > /dev/null && TEST_CODE=$? || TEST_CODE=$?
+            if [ $TEST_CODE -ne 0 ]; then
+              EXIT_CODE=$TEST_CODE
+              TEST_CODE="Error"
+            else
+              TEST_CODE="Success"
+            fi
+            echo "$j: $TEST_CODE"
+          done
+          exit $EXIT_CODE
