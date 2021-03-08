@@ -1,0 +1,46 @@
+{
+    "AWS": {
+        "generic_placeholders": [
+            "",
+            " OriginalAlert.type",
+            "OriginalAlert.source"
+        ],
+        "detection_name": {}
+    },
+    "GWS": {
+        "generic_placeholders": [
+            "OriginalAlert.source",
+            " OriginalAlert.type",
+            "OriginalAlert.data.@type"
+        ],
+        "detection_name": {
+            "User-reported_Phishing": {
+                "fields": {
+                    "query": "Test Quey",
+                    "summary": "This Malop opened after a user reported a phishing message sent to your domain [OriginalAlert.data.domainId.customerPrimaryDomain] in Google Workspace. A spike in user-reported phishing emails could indicate your domain is experiencing a phishing attack. This message had an email subject line of [OriginalAlert.data.messages{}.subjectText] with a subject line MD5 Hash of [OriginalAlert.data.messages{}.md5HashSubject] and was sent from the sender email address [OriginalAlert.data.maliciousEntity.fromHeader] at [OriginalAlert.data.messages{}.date] to the recipients [OriginalAlert.data.messages{}.recipient].  The alert was created at [OriginalAlert.createTime]. Attachments to this email have the following 256 hashes: OriginalAlert.data.messages{}.attachmentsSha256Hash{}. G Suite Alert center assigned a severity of [OriginalAlert.metadata.severity] to this message. ",
+                    "recommendation": "It is recommended to verify whether the email is phishing and, if so, remove the message from affected user inboxes as soon as possible. Manually remove phishing emails from user's inboxes by opening the Google Admin investigation tool.  Consider blocking the sender of this message by their email address or domain in the Google Admin console. ",
+                    "mitre_classification": [
+                        "Initial Access"
+                    ],
+                    "mitre_tactic": [
+                        "",
+                        "Phishing"
+                    ],
+                    "reference": "https://cybereason.atlassian.net/jira/software/projects/MXDRG/boards/401?selectedIssue=MXDRG-12",
+                    "severity": "3_elevated",
+                    "specific_placeholders": [
+                        "[OriginalAlert.createTime]",
+                        " [OriginalAlert.data.messages{}.subjectText]",
+                        " [OriginalAlert.data.messages{}.md5HashSubject ",
+                        " [OriginalAlert.data.maliciousEntity.fromHeader]",
+                        " [OriginalAlert.data.messages{}.date]",
+                        " [OriginalAlert.data.messages{}.recipient]",
+                        "  [OriginalAlert.createTime]",
+                        " OriginalAlert.data.messages{}.attachmentsSha256Hash{}",
+                        " [OriginalAlert.metadata.severity]"
+                    ]
+                }
+            }
+        }
+    }
+}
